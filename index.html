@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vault Lock for Obsidian</title>
+  <meta name="description" content="Vault Lock is a passphrase lock screen for Obsidian, with a private folder that disappears while the vault is locked.">
+  <meta name="author" content="obsidian-lock">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0a10">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#top" aria-label="Vault Lock, back to top">
+      <svg class="brand-mark" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#15151f"/>
+        <path d="M22 29v-6a10 10 0 0 1 20 0v6" fill="none" stroke="#a78bfa" stroke-width="5" stroke-linecap="round"/>
+        <rect x="16" y="29" width="32" height="24" rx="7" fill="#7c3aed"/>
+        <circle cx="32" cy="41" r="3.5" fill="#15151f"/>
+      </svg>
+      <span>Vault Lock</span>
+    </a>
+    <nav class="top-nav" aria-label="Page">
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/obsidian-lock/vault-lock">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">A plugin for Obsidian on the desktop</p>
+      <h1>Vault Lock</h1>
+      <p class="lead">A passphrase lock screen for Obsidian, with a private folder that disappears while the vault is locked.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="obsidian://brat?plugin=obsidian-lock/vault-lock">Install with BRAT</a>
+        <a class="btn btn-ghost" href="https://github.com/obsidian-lock/vault-lock">View on GitHub</a>
+      </div>
+      <p class="fineprint">Free and open source. Obsidian 1.5 or newer. The button needs <a href="#install">BRAT</a> installed.</p>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="wrap">
+      <h2>What it does</h2>
+      <p class="section-lead">One job, done quietly. Lock the window, hide one folder, ask for the passphrase.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          </div>
+          <h3>Locks when it should</h3>
+          <p>At launch. After a number of idle minutes (five by default). When the window loses focus, if you turn that on. Or the moment you run <em>Lock vault now</em>. If Obsidian crashes while unlocked, it locks again at the next start, before the interface appears.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M3 9h18M8 21h8"/></svg>
+          </div>
+          <h3>A real lock screen</h3>
+          <p>While locked, an overlay covers the whole window and pop-out windows go blank. Hotkeys and the command palette don't work, the Settings window is closed, and every window title shows only "Obsidian".</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M4 4l16 16"/></svg>
+          </div>
+          <h3>A folder that disappears</h3>
+          <p>On lock, tabs showing private notes are closed and the private folder (<code>Private</code> by default) is renamed to <code>.Private</code>. Obsidian ignores dot-folders completely: file explorer, search, graph and quick switcher. On Windows the folder also gets the hidden attribute.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="8.5" cy="12" r="4.5"/><path d="M13 12h8m-3 0v3m-3-3v2"/></svg>
+          </div>
+          <h3>The passphrase is never stored</h3>
+          <p>Only a PBKDF2-SHA256 hash (200,000 iterations, random salt) is kept in the plugin's <code>data.json</code>. Each wrong passphrase adds a growing delay, up to five seconds.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2.5"/><circle cx="10" cy="17" r="2.5"/></svg>
+          </div>
+          <h3>Four settings</h3>
+          <p>The passphrase. Lock after idle minutes (0 turns it off). Lock when the window loses focus. The private folder's name, changed only while unlocked. Nothing else.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 7l5 5-5 5M12 17h7"/></svg>
+          </div>
+          <h3>Two commands</h3>
+          <p><em>Lock vault now</em> locks immediately. <em>Set or change passphrase</em> opens the passphrase prompt and asks for the current one first.</p>
+        </article>
+      </div>
+
+      <p class="note">Desktop only: Windows, macOS and Linux. Obsidian 1.5.0 or newer.</p>
+    </div>
+  </section>
+
+  <section class="section" id="install">
+    <div class="wrap">
+      <h2>Install</h2>
+      <p class="section-lead">Vault Lock is not in the Obsidian community catalogue. BRAT installs it from GitHub and also installs updates. Three ways to get there, easiest first.</p>
+
+      <ol class="paths">
+        <li class="card path">
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <h3>One click</h3>
+            <p>If BRAT is already installed, press <a href="obsidian://brat?plugin=obsidian-lock/vault-lock">Install with BRAT</a>. Obsidian opens and asks BRAT to add the plugin. If Vault Lock is not switched on afterwards, enable it under <em>Settings → Community plugins</em>.</p>
+          </div>
+        </li>
+
+        <li class="card path">
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <h3>With BRAT, by hand</h3>
+            <ol class="steps">
+              <li>Open <em>Settings → Community plugins</em>. If Obsidian shows Restricted mode, turn it off.</li>
+              <li>Choose <em>Browse</em>, search for <strong>BRAT</strong>, then <em>Install</em> and <em>Enable</em>.</li>
+              <li>In BRAT's settings choose <em>Add beta plugin</em>, paste <code>obsidian-lock/vault-lock</code> and press <em>Add</em>.</li>
+              <li>Enable <strong>Vault Lock</strong> under <em>Community plugins</em>.</li>
+            </ol>
+          </div>
+        </li>
+
+        <li class="card path">
+          <span class="num" aria-hidden="true">3</span>
+          <div>
+            <h3>Manual</h3>
+            <p>From the <a href="https://github.com/obsidian-lock/vault-lock/releases/latest">latest release</a> download <code>main.js</code>, <code>manifest.json</code> and <code>styles.css</code> into <code>&lt;your vault&gt;/.obsidian/plugins/vault-lock/</code>. Reload Obsidian and enable Vault Lock under <em>Community plugins</em>. Those three files are the whole plugin. There is no other installer.</p>
+          </div>
+        </li>
+      </ol>
+
+      <details class="help">
+        <summary>The button did nothing?</summary>
+        <ul>
+          <li>Obsidian must be installed and open. The button is an <code>obsidian://</code> link, and only Obsidian can answer it.</li>
+          <li>BRAT must be installed and enabled first. Path 2 above shows how.</li>
+          <li>Vault Lock runs on the desktop only. Obsidian on phones and tablets is not supported.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <section class="section" id="not">
+    <div class="wrap">
+      <h2>What it is not</h2>
+      <div class="card plain">
+        <p class="big">Vault Lock is a privacy screen, not a safe.</p>
+        <ul class="honest">
+          <li><strong>Nothing is encrypted.</strong> Your notes, the private folder included, stay ordinary files on disk, readable by anyone who can open them.</li>
+          <li><strong>The lock is a file.</strong> Deleting the plugin's <code>data.json</code> removes the lock. Anyone who can reach that file can get past it.</li>
+          <li><strong>For a lost or stolen laptop</strong>, use full-disk encryption: BitLocker, FileVault or LUKS. Vault Lock keeps casual eyes off the screen. It does not replace that.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-row">
+    <p>Vault Lock is published by obsidian-lock under the MIT licence.</p>
+    <nav aria-label="Footer">
+      <a href="https://github.com/obsidian-lock/vault-lock">GitHub</a>
+      <a href="https://github.com/obsidian-lock/vault-lock/security/advisories/new">Report a security issue</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -167,7 +167,7 @@
             <svg viewBox="0 0 24 24"><circle cx="8" cy="14" r="4.5"/><path d="M11.5 10.5 20 2M16 6l2.5 2.5M13.5 8.5 16 11"/></svg>
           </div>
           <h3>Checked against a hash</h3>
-          <p>On this computer the plugin keeps a PBKDF2-SHA256 hash (200,000 iterations, random salt) in its <code>data.json</code>, not the plain passphrase. Each wrong passphrase adds a growing delay, up to five seconds.</p>
+          <p>The passphrase is checked against a PBKDF2-SHA256 hash (200,000 iterations, random salt). Each wrong passphrase adds a growing delay, up to five seconds.</p>
         </article>
 
         <article class="card feature">

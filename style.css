@@ -68,8 +68,7 @@ code {
   color: var(--text);
 }
 
-em { font-style: normal; color: var(--text); font-weight: 500; white-space: nowrap; }
-.nb { white-space: nowrap; }
+em { font-style: normal; color: var(--text); font-weight: 500; }
 strong { font-weight: 600; color: var(--text); }
 p { margin: 0; }
 h1, h2, h3 { margin: 0; }
@@ -227,7 +226,7 @@ h1 {
   font-size: clamp(1.0625rem, 1.3vw + 0.6rem, 1.3125rem);
   line-height: 1.55;
   color: var(--muted);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 .actions {
   margin-top: 38px;
@@ -281,7 +280,6 @@ h1 {
   margin-top: 20px;
   color: var(--faint);
   font-size: 0.875rem;
-  text-wrap: balance;
 }
 .fineprint a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .fineprint a:hover { color: var(--text); }
@@ -558,21 +556,6 @@ h1 {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
-.strip { padding: clamp(48px, 6vw, 72px) 0; }
-.strip-inner {
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
-}
-.strip-text {
-  margin-top: 14px;
-  color: var(--muted);
-  font-size: clamp(1.0625rem, 0.6vw + 0.85rem, 1.25rem);
-  line-height: 1.6;
-  text-wrap: balance;
-}
-.strip-text a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--accent-line); }
-.strip-text a:hover { text-decoration-color: currentColor; }
 .section-head {
   max-width: 680px;
   margin: 0 auto;
@@ -613,7 +596,7 @@ h3 {
   border-radius: var(--r-lg);
   padding: 28px;
 }
-.card p { color: var(--muted); font-size: 0.9375rem; line-height: 1.65; text-wrap: pretty; }
+.card p { color: var(--muted); font-size: 0.9375rem; line-height: 1.65; }
 .card p + p { margin-top: 10px; }
 .card h3 + p { margin-top: 8px; }
 
@@ -626,11 +609,7 @@ h3 {
   gap: 16px;
 }
 @media (max-width: 959px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 599px) {
-  .grid { grid-template-columns: 1fr; }
-  .feature { padding: 24px 22px; }
-  .feature .icon { margin-bottom: 16px; }
-}
+@media (max-width: 599px) { .grid { grid-template-columns: 1fr; } }
 .feature {
   overflow: hidden;
   transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -666,6 +645,8 @@ h3 {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.icon-lg { width: 52px; height: 52px; margin: 0; border-radius: 14px; }
+.icon-lg svg { width: 26px; height: 26px; }
 .note-line {
   margin-top: 28px;
   text-align: center;
@@ -739,14 +720,13 @@ h3 {
 }
 .facts {
   list-style: none;
-  max-width: 620px;
-  margin: 44px auto 0;
+  margin: 36px 0 0;
   padding: 0;
   display: grid;
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 28px;
   color: var(--muted);
-  font-size: 1rem;
-  text-wrap: pretty;
+  font-size: 0.9375rem;
   line-height: 1.6;
 }
 .facts li {
@@ -764,12 +744,13 @@ h3 {
   background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3.5 7.2l2.3 2.3 4.7-5' fill='none' stroke='%23b8a4ff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat;
   border: 1px solid var(--accent-line);
 }
+@media (max-width: 759px) { .facts { grid-template-columns: 1fr; } }
 
 /* Install */
 
 .paths {
   list-style: none;
-  max-width: 780px;
+  max-width: 900px;
   margin: 52px auto 0;
   padding: 0;
   display: grid;
@@ -808,9 +789,22 @@ h3 {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 10px 24px -10px var(--glow);
 }
 .path-card { padding: 24px 28px 28px; }
-.path-card h3 { font-size: 1.125rem; scroll-margin-top: 40px; }
+.path-card h3 { font-size: 1.125rem; }
 .path-card .btn { margin-top: 18px; }
-.path-card .btn + p { margin-top: 16px; }
+.first {
+  max-width: 900px;
+  margin: 44px auto 0;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.first > div { flex: 1 1 460px; }
+.first h3 { font-size: 1.125rem; }
+.first .btn { flex: 0 0 auto; }
+.first + .paths { margin-top: 24px; }
 @media (max-width: 479px) {
   .path { position: relative; display: block; padding-bottom: 28px; }
   .path-rail { position: absolute; top: -16px; left: 18px; z-index: 1; }
@@ -890,7 +884,7 @@ h3 {
 .copy-btn.done .done-ic, .copy-btn.done .done-label { display: inline; }
 
 .help {
-  max-width: 780px;
+  max-width: 900px;
   margin: 24px auto 0;
   border: 1px solid var(--border);
   border-radius: var(--r-md);
@@ -923,7 +917,6 @@ h3 {
 .help[open] summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
 .help ul {
   margin: 0;
-  list-style: disc;
   padding: 0 24px 22px 44px;
   color: var(--muted);
   font-size: 0.9375rem;
@@ -931,43 +924,37 @@ h3 {
 }
 .help li + li { margin-top: 8px; }
 .help li::marker { color: var(--accent-text); }
-.help p {
-  padding: 0 24px 22px;
-  color: var(--muted);
-  font-size: 0.9375rem;
-  line-height: 1.65;
-}
-.help .copy-row { margin: 16px 24px 22px; }
 
-/* Below the steps: line up with the cards, not the number rail */
-@media (min-width: 480px) {
-  .paths + .help {
-    width: calc(100% - 64px);
-    max-width: 716px;
-    transform: translateX(32px);
-  }
-  .paths + .help summary { padding: 18px 28px; }
-  .paths + .help p { padding: 0 28px 24px; }
-}
+/* What it is not */
 
-/* The help block inside the step 3 card */
-.path-card .help {
-  max-width: none;
-  margin: 20px 0 0;
-  background: rgba(0, 0, 0, 0.22);
-  border-radius: var(--r-sm);
+.honest {
+  position: relative;
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--accent-line);
+  background:
+    radial-gradient(ellipse 50% 60% at 0% 0%, rgba(124, 92, 255, 0.16), transparent 70%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  overflow: hidden;
 }
-.path-card .help summary { padding: 13px 16px; font-size: 0.9375rem; border-radius: var(--r-sm); }
-.path-card .help ul { padding: 0 16px 0 36px; }
-.path-card .help .copy-row { margin: 16px 16px 16px; }
-@media (max-width: 479px) {
-  .copy-row { flex-direction: column; }
-  .copy-code, .copy-btn { justify-content: center; }
-  .path-card .help summary { padding: 13px 14px; }
-  .path-card .help ul { padding: 0 14px 0 32px; }
-  .path-card .help .copy-row { margin: 16px 14px 14px; }
-  .help p { padding: 0 20px 20px; }
-  .help summary { padding: 16px 20px; }
+.honest-head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.honest-head h2 { margin-top: 6px; font-size: clamp(1.5rem, 2.8vw, 2.125rem); }
+.honest-grid {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 32px;
+}
+.honest-grid p { margin-top: 8px; color: var(--muted); font-size: 0.9375rem; line-height: 1.65; }
+@media (max-width: 759px) {
+  .honest-grid { grid-template-columns: 1fr; }
+  .honest-head { align-items: flex-start; }
 }
 
 /* Footer */

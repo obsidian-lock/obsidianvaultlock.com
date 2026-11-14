@@ -12,10 +12,12 @@
   <meta property="og:description" content="A small Obsidian plugin that opens your vault behind a passphrase and encrypts private notes while it is locked.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://obsidianvaultlock.com/">
+  <meta property="og:image" content="https://obsidianvaultlock.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://obsidianvaultlock.com/og.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -79,6 +81,7 @@
         </div>
       </div>
     </div>
+    <p class="win-cap">Search, hotkeys, settings and pop-out windows are locked too.</p>
   </section>
 
   <section class="section">
@@ -99,17 +102,16 @@
         <p>Notes in your private folder are AES-256 encrypted while locked, and decrypted on unlock.</p>
       </div>
     </div>
-    <p class="extra wrap">Search, hotkeys, settings and pop-out windows are locked too.</p>
   </section>
 
   <section class="section">
     <div class="wrap private">
       <div class="private-text">
         <h2>The folder that disappears</h2>
-        <p>Keep sensitive notes together in one private folder. While locked, it disappears from the file list, search and graph. Its notes are AES-256 encrypted while locked, and decrypted on unlock.</p>
+        <p>Keep sensitive notes together in one private folder. While locked, it disappears from the file list, search and graph. Unlock, and it is back.</p>
         <p class="small">One folder, tucked away until you unlock.</p>
       </div>
-      <div class="compare" aria-hidden="true">
+      <div class="compare">
         <div class="pane">
           <div class="pane-head">Unlocked</div>
           <ul class="tree">
@@ -143,21 +145,21 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg>
             <div>
               <h3>AES-256</h3>
-              <p>Private notes use AES-256 encryption.</p>
+              <p>The same standard banks and password managers use.</p>
             </div>
           </div>
           <div class="enc-point">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
             <div>
               <h3>Encrypted on lock</h3>
-              <p>When Vault Lock locks, the private notes are encrypted.</p>
+              <p>Automatic — when the vault locks, the notes are already encrypted.</p>
             </div>
           </div>
           <div class="enc-point">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.9-1"/></svg>
             <div>
               <h3>Decrypted on unlock</h3>
-              <p>When you unlock, the private notes are decrypted.</p>
+              <p>Automatic too. Unlock and they are readable again, in place.</p>
             </div>
           </div>
         </div>
@@ -203,7 +205,9 @@
             <div class="copy-row">
               <code>obsidian-lock/vault-lock</code>
               <button class="copy-btn" type="button" data-copy="obsidian-lock/vault-lock">Copy</button>
+              <span class="sr-only" role="status" aria-live="polite" id="copy-status"></span>
             </div>
+            <p class="step-fallback">Nothing happened? Make sure Obsidian is running and BRAT is enabled, then press Install again — or choose <em>Add beta plugin</em> in BRAT and paste the plugin name from the row above.</p>
           </div>
           <a class="btn btn-primary" href="obsidian://brat?plugin=obsidian-lock/vault-lock">Install</a>
         </li>
@@ -225,11 +229,31 @@
 <script>
   document.querySelectorAll('[data-copy]').forEach(function (b) {
     b.addEventListener('click', function () {
-      if (!navigator.clipboard) return;
-      navigator.clipboard.writeText(b.dataset.copy).then(function () {
-        b.textContent = 'Copied';
+      var text = b.dataset.copy;
+      var status = document.getElementById('copy-status');
+      var done = function (ok) {
+        b.textContent = ok ? 'Copied' : 'Copy failed';
+        if (status) status.textContent = ok ? 'Copied to clipboard' : 'Could not copy';
         setTimeout(function () { b.textContent = 'Copy'; }, 1600);
-      });
+      };
+      var legacy = function () {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        done(ok);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { legacy(); });
+      } else {
+        legacy();
+      }
     });
   });
 </script>

@@ -328,6 +328,75 @@ h1 {
   .pane .tree li { padding-right: 4px; }
 }
 
+.extra {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--faint);
+  font-size: 0.875rem;
+}
+
+/* Encryption */
+
+.enc { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.enc-intro { margin-top: 12px; color: var(--muted); font-size: 1.0625rem; max-width: 42ch; }
+.enc-points { display: grid; gap: 24px; margin-top: 32px; }
+.enc-point { display: flex; gap: 16px; align-items: flex-start; }
+.enc-point svg {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  fill: none;
+  stroke: var(--accent-text);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.enc-point p { margin-top: 4px; color: var(--muted); font-size: 0.9375rem; }
+
+.cipher { display: grid; gap: 12px; justify-items: center; }
+.cipher-card {
+  width: min(380px, 100%);
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--o-side);
+  border: 1px solid rgba(138, 108, 239, 0.45);
+  box-shadow: 0 30px 60px -30px rgba(138, 108, 239, 0.35);
+}
+.cipher-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--o-text);
+}
+.cipher-head svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--o-muted);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cipher-head .cipher-lock { margin-left: auto; stroke: var(--accent-text); }
+.cipher-body {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--o-bg);
+  border: 1px solid var(--o-border);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  color: var(--accent-text);
+  letter-spacing: 0.02em;
+}
+.cipher-tag { font-size: 0.8125rem; color: var(--faint); }
+@media (max-width: 860px) {
+  .enc { grid-template-columns: 1fr; gap: 40px; }
+}
+
 /* Install */
 
 .steps {

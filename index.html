@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vault Lock — a passphrase lock for Obsidian</title>
-  <meta name="description" content="A passphrase lock for Obsidian. It locks when you step away, and your private notes stay out of sight until you unlock.">
+  <title>Vault Lock — password lock and encryption for Obsidian</title>
+  <meta name="description" content="Lock Obsidian with a passphrase. Private notes are encrypted while locked, and stay out of sight until you unlock.">
   <meta name="author" content="obsidian-lock">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#0e0e10">
-  <meta property="og:title" content="Vault Lock — a passphrase lock for Obsidian">
-  <meta property="og:description" content="Lock Obsidian with a passphrase. Private notes stay out of sight until you unlock.">
+  <meta property="og:title" content="Vault Lock — password lock and encryption for Obsidian">
+  <meta property="og:description" content="Lock Obsidian with a passphrase. Private notes are encrypted while locked.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://obsidianvaultlock.com/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -26,7 +26,7 @@
     <div class="wrap intro">
       <img class="app-icon" src="favicon.svg" width="76" height="76" alt="">
       <h1>Vault Lock</h1>
-      <p class="tagline">Lock your Obsidian vault with a password.<br class="br-wide"> Keep your notes private.</p>
+      <p class="tagline">Lock your Obsidian vault with a password.<br class="br-wide"> Your private notes are encrypted when it's locked.</p>
       <a class="btn btn-primary" href="#install">Get Vault Lock</a>
       <p class="meta">Free · Windows, macOS and Linux · Obsidian 1.5+</p>
     </div>
@@ -95,18 +95,19 @@
       </div>
       <div class="feature">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg>
-        <h3>Nothing slips past</h3>
-        <p>Search, shortcuts, settings and pop-out windows are locked too.</p>
+        <h3>Encrypted while locked</h3>
+        <p>Your private notes are AES-256 encrypted the moment the vault locks.</p>
       </div>
     </div>
+    <p class="extra wrap">Search, shortcuts, settings and pop-out windows are locked too.</p>
   </section>
 
   <section class="section">
     <div class="wrap private">
       <div class="private-text">
         <h2>A private folder that disappears</h2>
-        <p>Keep sensitive notes in one folder. When the vault locks, it is gone from the file list, search and graph. Unlock, and it is back.</p>
-        <p class="small">Hidden inside Obsidian, not encrypted on disk.</p>
+        <p>Keep sensitive notes in one folder. When the vault locks, it is gone from the file list, search and graph — and encrypted on disk. Unlock, and it is back.</p>
+        <p class="small">AES-256 encrypted while locked.</p>
       </div>
       <div class="compare" aria-hidden="true">
         <div class="pane">
@@ -128,6 +129,49 @@
             <li class="t-file">Weekly review</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="encryption">
+    <div class="wrap enc">
+      <div class="enc-text">
+        <h2>Encryption</h2>
+        <p class="enc-intro">While the vault is locked, the private folder is encrypted on disk — not just hidden.</p>
+        <div class="enc-points">
+          <div class="enc-point">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg>
+            <div>
+              <h3>AES-256</h3>
+              <p>The same standard banks and password managers use.</p>
+            </div>
+          </div>
+          <div class="enc-point">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <div>
+              <h3>Encrypted on lock</h3>
+              <p>Every private note is encrypted the moment the vault locks.</p>
+            </div>
+          </div>
+          <div class="enc-point">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.9-1"/></svg>
+            <div>
+              <h3>Decrypted on unlock</h3>
+              <p>Your passphrase brings them back when you unlock.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cipher" aria-hidden="true">
+        <div class="cipher-card">
+          <div class="cipher-head">
+            <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>
+            <span>Journal.md</span>
+            <svg class="cipher-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </div>
+          <div class="cipher-body">8f3a9c1b e47d2f05 6b8e90aa a1c4d7e2</div>
+        </div>
+        <div class="cipher-tag">AES-256 · encrypted while locked</div>
       </div>
     </div>
   </section>
